@@ -16,5 +16,4 @@
     setTimeout(function (){ 
         window.location = "new_book.jsp";
     }, 1500);
-    
 </script>

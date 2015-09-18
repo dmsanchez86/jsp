@@ -16,7 +16,7 @@
 %>
 <script>
     setTimeout(function (){ 
-        window.location = "new_book.jsp";
+        window.location = "index.jsp";
     }, 1500);
     
 </script>

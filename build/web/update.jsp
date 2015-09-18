@@ -20,26 +20,52 @@
             Conection conection = new Conection("jdbc:mysql://localhost/library", "root", "");
             conection.conectar();
             ResultSet data;
+            Object[] obj = {"","","",""};
+            boolean select_display;
             
-            data = conection.query("SELECT * FROM book WHERE id = '"+ request.getParameter("id") +"'");
-            Object[] obj = new Object[4];
-            
-            while(data.next()){
-                obj[0] = data.getInt(1);
-                obj[1] = data.getString(2);
-                obj[2] = data.getString(3);
-                obj[3] = data.getInt(4);
+            if(request.getParameter("id") != null){
+                data = conection.query("SELECT * FROM book WHERE id = '"+ request.getParameter("id") +"'");
+
+                while(data.next()){
+                    obj[0] = data.getInt(1);
+                    obj[1] = data.getString(2);
+                    obj[2] = data.getString(3);
+                    obj[3] = data.getInt(4);
+                }
+                conection.logout();
+                
+                select_display = false;
+            }else{
+                select_display = true;
+                
+                data = conection.query("SELECT id FROM book");
             }
-            conection.logout();
-        
         %>
         
         <div class="content_home">
             <h3>Update Book</h3>
             <form action="update_book.jsp" method="post">
-                <div>
-                    <input type="hidden" name="id" id="id" value="<%= obj[0].toString() %>">
-                </div>
+                
+                <%
+                if(select_display){ %>
+                    <select id="id" name="id">
+                        <option value="">Select Id</option>
+                        <% 
+                        
+                        while(data.next())
+                            out.print("<option value="+ data.getString(1) +">"+ data.getString(1) +"</option>");
+                        
+                        %>
+                    </select>
+                <%
+                }else{
+                %>
+                
+                    <div>
+                        <input type="hidden" name="id" id="id" value="<%= obj[0].toString() %>">
+                    </div>
+                
+                <% } %>
                 <div>
                     <input type="text" name="name" id="name" placeholder="Name Book" value="<%= obj[1].toString() %>">
                 </div>
@@ -50,10 +76,14 @@
                     <input type="text" name="pages" id="pages" placeholder="Number Pages Book"  value="<%= obj[3].toString() %>">
                 </div>
                 <div>
-                    <br><input type="submit" value="Actualizar" id="update">
+                    <br><input type="submit" value="Update" id="update">
                 </div>
             </form>
+            <div>
+                <br><a href="index.jsp">Home</a>
+            </div>
         </div>
+        
         
     </body>
 </html>

@@ -26,11 +26,11 @@
                     <input type="text" name="pages" id="pages" placeholder="Number Pages Book">
                 </div>
                 <div>
-                    <br><input type="submit" value="Registrar" id="registrar">
+                    <br><input type="submit" value="Register" id="registrar">
                 </div>
             </form>
             <div>
-                <br><a href="index.jsp">Inicio</a>
+                <br><a href="index.jsp">Home</a>
             </div>
         </div>
     </body>

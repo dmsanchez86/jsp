@@ -1,11 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body,html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    padding: 15rem;
+    box-sizing: border-box;
+    
+    h2{
+        transition: color .4s .2s ease;
+    }
+}
+
 .content_home{
-    position: absolute;
-    margin: auto;
-    left: 0;
-    bottom: 0;
-    width: 580px;
-    top: 0;
-    right: 0;
+    position: relative;
+    margin: 0 auto;
+    width: 180px;
 
     a{
         color: gray;
@@ -13,7 +29,7 @@
         -moz-transition: all .3s ease;
         transition: all .3s ease;
         text-decoration: none;
-        display: block;
+        display: inline-block;
 
         &:hover,
         &:focus{
@@ -42,6 +58,63 @@ tr{
         &:first-child{
             background: red;
             cursor: pointer;
+        }
+    }
+}
+
+.body_animate{
+    position: relative;
+    perspective: 1000px;
+    perspective-origin: 0% 50%;
+    overflow: hidden;
+    transition: background .25s ease-in;
+    
+    &:before{
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 2px 1px #323232;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+        content: '';
+        transform: rotatey(0deg) translatex(-150%);
+        transform-origin: left;
+        transition: transform .3s ease,height .5s .5s ease, background .5s cubic-bezier(0.1, 1.8, 1, 1);
+    }
+    
+    &.active{
+        
+        &:before{
+            transform: rotatey(10deg) translatex(0%);
+            height: 100%;
+        }
+        
+        &.yellow{
+            &:before{background: rgba(0, 255,100, 0.1);}
+        }
+        
+        &.blue{
+            &:before{background: rgba(0, 0, 255, 0.1);}
+        }
+        
+        &.green{
+            &:before{background: rgba(0, 128, 0, 0.1);}
+        }
+        
+        h2{
+            transition: color .5s ease;
+            color: white;
+            text-shadow: 0 0 2px #323232;
+        }
+        
+        a{
+            &:hover{
+                color: #323232;
+            }
         }
     }
 }

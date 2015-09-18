@@ -1,18 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+body, html {
+  height: 100%;
+  width: 100%; }
+
+body {
+  padding: 15rem;
+  box-sizing: border-box; }
+  body h2 {
+    transition: color .4s .2s ease; }
+
 .content_home {
-  position: absolute;
-  margin: auto;
-  left: 0;
-  bottom: 0;
-  width: 580px;
-  top: 0;
-  right: 0; }
+  position: relative;
+  margin: 0 auto;
+  width: 180px; }
   .content_home a {
     color: gray;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     transition: all .3s ease;
     text-decoration: none;
-    display: block; }
+    display: inline-block; }
     .content_home a:hover, .content_home a:focus {
       color: #f60;
       text-decoration: underline; }
@@ -33,5 +44,42 @@ tr {
     tr:hover:first-child, tr:focus:first-child {
       background: red;
       cursor: pointer; }
+
+.body_animate {
+  position: relative;
+  perspective: 1000px;
+  perspective-origin: 0% 50%;
+  overflow: hidden;
+  transition: background .25s ease-in; }
+  .body_animate:before {
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px 1px #323232;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    content: '';
+    transform: rotatey(0deg) translatex(-150%);
+    transform-origin: left;
+    transition: transform 0.3s ease, height 0.5s 0.5s ease, background 0.5s cubic-bezier(0.1, 1.8, 1, 1); }
+  .body_animate.active:before {
+    transform: rotatey(10deg) translatex(0%);
+    height: 100%; }
+  .body_animate.active.yellow:before {
+    background: rgba(0, 255, 100, 0.1); }
+  .body_animate.active.blue:before {
+    background: rgba(0, 0, 255, 0.1); }
+  .body_animate.active.green:before {
+    background: rgba(0, 128, 0, 0.1); }
+  .body_animate.active h2 {
+    transition: color .5s ease;
+    color: white;
+    text-shadow: 0 0 2px #323232; }
+  .body_animate.active a:hover {
+    color: #323232; }
 
 /*# sourceMappingURL=main.css.map */

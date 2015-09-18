@@ -25,34 +25,37 @@
                 ResultSet data = conection.query("SELECT * FROM book");
         %>
         <div class="content_home">
-            
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>AUTOR</th>
-                <th>PÁGINAS</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-            </tr>
-        <%      while(data.next()){ %>
-                    <tr>
-                        <td><% out.println(data.getString("id")); %></td>
-                        <td><% out.println(data.getString("name")); %></td>
-                        <td><% out.println(data.getString("author")); %></td>
-                        <td><% out.println(data.getString("pages")); %></td>
-                        <td><a href="update.jsp?id=<% out.println(data.getString("id")); %>">Editar</a></td>
-                        <td><a href="delete.jsp?id=<% out.println(data.getString("id")); %>">Eliminar</a></td>
-                    </tr>
-            <%  } %>
-        <%    }catch(Exception e){
-                out.print("Error:<br>");
-                out.print(e);
-            }
-            
-        %>
-        </table>
-        
+            <h3>All Books</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>AUTHOR</th>
+                    <th>PAGES</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+            <%      while(data.next()){ %>
+                        <tr>
+                            <td><% out.println(data.getString("id")); %></td>
+                            <td><% out.println(data.getString("name")); %></td>
+                            <td><% out.println(data.getString("author")); %></td>
+                            <td><% out.println(data.getString("pages")); %></td>
+                            <td><a href="update.jsp?id=<% out.println(data.getString("id")); %>">Editar</a></td>
+                            <td><a href="delete.jsp?id=<% out.println(data.getString("id")); %>">Eliminar</a></td>
+                        </tr>
+                <%  } %>
+            <%    }catch(Exception e){
+                    out.print("Error:<br>");
+                    out.print(e);
+                }
+
+            %>
+            </table>
+
+            <div>
+                <br><a href="index.jsp">Home</a>
+            </div>
         </div>
     </body>
 </html>

@@ -14,15 +14,49 @@
         <title>My First JSP Page</title>
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body>
+    <body class="body_animate">
         <div class="content_home">
             <h2>Library</h2>
             <span>
-                <a href="new_book.jsp">Nuevo</a>
-                <a href="update.jsp">Modificar</a>
-                <a href="all.jsp">Todos</a>
+                <a href="new_book.jsp" data-color="yellow">New</a><br>
+                <a href="update.jsp" data-color="blue">Update</a><br>
+                <a href="all.jsp" data-color="green">All</a><br>
             </span>
         </div>
+        
+        <script>
+            window.onload = function(){
+                console.log("Page Load!");
+                
+                var links = document.querySelectorAll(".content_home a");
+                var title = document.querySelector(".content_home h2");
+                var body = document.querySelector(".body_animate");
+                var content = document.querySelector(".content_home");
+                
+                content.onmouseenter = hover;
+                
+                title.onmouseenter = hover;
+                
+                content.onmouseout = leave;
+                
+                for (var i = 0; i < links.length; i++) {
+                    links[i].onmouseenter = function(){
+                        var color = this.getAttribute("data-color");
+                        
+                        body.className = "body_animate active "+ color;
+                    }
+                }
+                
+                function hover(){
+                    body.className = "body_animate active";
+                }
+                
+                function leave(){
+                    body.className = "body_animate";
+                }
+                
+            }
+        </script>
         
     </body>
 </html>
